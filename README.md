@@ -1,8 +1,7 @@
 # My-Online-Electronics-Shop SQL
 This is an SQL relational database detailing customers ,orders/sales and products for my online electronics shop
-Student_ID	Gender	Income_Source	Savings_Frequency	Uses_KCB_App	Monthly_Savings_Ksh	Financial_Wellbeing_Score	Semester
 
-# My Bookstore SQL Project
+# My Online Electronics shop  SQL Project
 
 <a name="readme-top"></a>
 
@@ -28,7 +27,7 @@ Student_ID	Gender	Income_Source	Savings_Frequency	Uses_KCB_App	Monthly_Savings_K
 
 # 📖 My SQL Project <a name="about-project"></a>
 
-**My SQL Project** is a simple Database that uses SQL, Postgres via Supabase and R to create, query and secure a **Bookstore** database.
+**My SQL Project** is a simple Database that uses SQL, Postgres via Supabase and R to create, query and secure an **Online Electronics Shop** database.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -169,6 +168,8 @@ JOIN products p ON o.product_id = p.product_id;
 ````
 
 - Here are the results of the queries:
+- <img width="938" height="359" alt="image" src="https://github.com/user-attachments/assets/ded13bdd-556f-4357-8a86-d962f94958cb" />
+
 <img width="1401" height="772" alt="image" src="https://github.com/user-attachments/assets/c7f8a166-8240-4a49-8847-99b2fe957413" />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
