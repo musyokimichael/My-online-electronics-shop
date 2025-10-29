@@ -1,4 +1,5 @@
-# 🛡️ Data Fundamentals: Admin & User Roles in My Online Electronics Shop DB
+# 🛡️ Data Fundamentals
+Admin & User Roles in My Online Electronics Shop DataBase
 
 <div align="center">
   <img width="320" height="260" alt="Supabase Logo" src="https://github.com/user-attachments/assets/20661293-a214-4004-9042-657102fb0710" />
