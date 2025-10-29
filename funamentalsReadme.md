@@ -46,11 +46,14 @@ The main goals are to:
 **Roles are stored in a `users` table** linked to Supabase Auth via `user_uuid`.
 
 ```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE users (
-  user_uuid UUID PRIMARY KEY,
+  user_uuid UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   username TEXT NOT NULL,
   role TEXT CHECK (role IN ('admin', 'user')) DEFAULT 'user'
 );
+
 ```
 
 ---
@@ -60,9 +63,12 @@ CREATE TABLE users (
 ### Enable RLS on Main Tables
 
 ```sql
+-- Enable Row Level Security (RLS) on all major tables
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+
 ```
 
 ---
@@ -71,34 +77,52 @@ ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 
 #### 1️⃣ Allow users to view only their own data
 ```sql
+DROP POLICY IF EXISTS "Users can view their own customer data" ON customers;
+
 CREATE POLICY "Users can view their own customer data"
 ON customers
 FOR SELECT
-USING (auth.uid() = user_uuid);
+USING (user_uuid = auth.uid());
+
 ```
 
 #### 2️⃣ Allow users to view their own orders
 ```sql
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Users can view their own orders" ON orders;
+
 CREATE POLICY "Users can view their own orders"
 ON orders
 FOR SELECT
-USING (auth.uid() = user_uuid);
+USING (user_uuid = auth.uid());
+
 ```
 
 #### 3️⃣ Allow users to add their own orders
 ```sql
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Users can insert their own orders" ON orders;
+
 CREATE POLICY "Users can insert their own orders"
 ON orders
 FOR INSERT
-WITH CHECK (auth.uid() = user_uuid);
+WITH CHECK (user_uuid = auth.uid());
+
 ```
 
 #### 4️⃣ Allow users to read all products (no restrictions)
 ```sql
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Users can view all products" ON products;
+
 CREATE POLICY "Users can view all products"
 ON products
 FOR SELECT
 USING (true);
+
 ```
 
 ---
