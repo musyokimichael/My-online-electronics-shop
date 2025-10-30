@@ -54,7 +54,8 @@ head(dbGetQuery(con, "SELECT * FROM customers LIMIT 5;"))
 ```
 
 ---
-##output for the successful connection in posit
+## output for the successful connection in posit
+
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/05c638b3-ff3e-4004-befb-be3072823c21" />
 
 
@@ -62,7 +63,8 @@ head(dbGetQuery(con, "SELECT * FROM customers LIMIT 5;"))
 
 ### **1. Load and Preview Tables**
 
-##Output for all customers
+## Output for all customers
+
 ```r
 dbGetQuery(con, "SELECT * FROM customers LIMIT 5;")
 ```
@@ -74,6 +76,7 @@ dbGetQuery(con, "SELECT * FROM products LIMIT 5;")
 <img width="1366" height="630" alt="image" src="https://github.com/user-attachments/assets/5fdcb824-7e0b-4125-9129-91a15fdf873f" />
 
 ##output for all orders
+
 ```r
 dbGetQuery(con, "SELECT * FROM orders LIMIT 5;")
 ```
@@ -81,6 +84,7 @@ dbGetQuery(con, "SELECT * FROM orders LIMIT 5;")
 <img width="1366" height="627" alt="image" src="https://github.com/user-attachments/assets/ad74b893-0cab-462c-bdcc-0a06b067c8d9" />
 
 ### **2. Visualization: Revenue by Category**
+
 ```r
 revenue_by_category <- dbGetQuery(con, "
   SELECT 
@@ -98,12 +102,14 @@ ggplot(revenue_by_category, aes(x = category, y = total_revenue, fill = category
   theme_minimal()
 
 ```
-##Output for revenue by category
+## Output for revenue by category
+
 <img width="1366" height="692" alt="image" src="https://github.com/user-attachments/assets/3536c6c7-a147-4d91-887e-1dc19efd8ef0" />
 
 ---
 
 ### **Current Inventory Levels by Product**
+
 ```r
 products <- dbGetQuery(con, "SELECT * FROM products;")
 
@@ -117,13 +123,11 @@ ggplot(products, aes(x = reorder(product_name, stock_quantity),
        y = "Stock Quantity") +
   theme_minimal()
 ```
-##Visuals for Inventory Levels by Product
+## Visuals for Inventory Levels by Product
+
 <img width="1366" height="634" alt="image" src="https://github.com/user-attachments/assets/95fee0b1-6a6b-42e4-bdc8-1c8abe71c0cc" />
 
 ---
-
-
-
 
 ## **💡 Why Use Posit with Supabase**
 - Seamless cloud database integration  
